@@ -1,0 +1,198 @@
+I"sW
+<h1 id="python-함수-위치-인수와-언패킹-사용하기">[Python] 함수: 위치 인수와 언패킹 사용하기</h1>
+
+<p>완료: Yes
+태그: 이론, 코드, 파이썬</p>
+
+<p>함수에 위치인수 사용하기</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Parameter를 입력한 순서대로 함수를 사용시 입력하는 변수값이 적용됨.
+</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">print_numbers</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+		<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+		<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+		<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="c1"># 사용
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">print_numbers</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>인수를 순서대로 넣을 땐 Unpacking 사용 가능</p>
+
+<p>위치 인수 ➡ <code class="language-plaintext highlighter-rouge">List</code> or <code class="language-plaintext highlighter-rouge">Tuple</code> 사용 가능</p>
+
+<p>Unpacking ➡ <code class="language-plaintext highlighter-rouge">’*’</code>을 붙여준다.</p>
+
+<p>⚠️ 함수의 매개변수 개수 == 리스트(튜플)의 요소 개수</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">print_numbers</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">print_numbers</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><strong>가변 인수 함수 (Variable argument)</strong></p>
+
+<p>같은 함수에 넣을 인수의 개수가 정해지지 않았을 때 위치인수와 Unpacking사용.</p>
+
+<p><code class="language-plaintext highlighter-rouge">def function_name(*args):</code></p>
+
+<p>여러개의 인수를 직접 넣거나</p>
+
+<p>언패킹을 사용한다 (<code class="language-plaintext highlighter-rouge">’*’</code>잊지 말기)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">print_numbers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+		<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+		<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+
+<span class="c1"># 사용
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">print_numbers</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">print_numbers</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p><strong>고정 인수와 가변 인수를 함께 사용하기</strong></p>
+
+<p>⚠️ 고정매개변수가 항상 가변인수 앞에 위치한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">print_numbers</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="p">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="p">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">print_numbers</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">print_numbers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">print_numbers</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+<span class="mi">10</span>
+<span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>인수와 순서를 다 외우기 어려우니 <code class="language-plaintext highlighter-rouge">키워드 인수(Keyword argument)</code> 사용</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">personal_info</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">address</span><span class="p">):</span>
+<span class="p">...</span>     <span class="k">print</span><span class="p">(</span><span class="s">'이름: '</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="p">...</span>     <span class="k">print</span><span class="p">(</span><span class="s">'나이: '</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
+<span class="p">...</span>     <span class="k">print</span><span class="p">(</span><span class="s">'주소: '</span><span class="p">,</span> <span class="n">address</span><span class="p">)</span>
+
+<span class="c1"># 키워드 인수를 사용하면 순서를 지켜서 넣지 않아도 괜찮다.
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">personal_info</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'홍길동'</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s">'서울시 용산구 이촌동'</span><span class="p">)</span>
+<span class="n">이름</span><span class="p">:</span>  <span class="n">홍길동</span>
+<span class="n">나이</span><span class="p">:</span>  <span class="mi">30</span>
+<span class="n">주소</span><span class="p">:</span>  <span class="n">서울시</span> <span class="n">용산구</span> <span class="n">이촌동</span>
+</code></pre></div></div>
+
+<p><strong>딕셔너리 언패킹</strong></p>
+
+<p>언패킹엔 <code class="language-plaintext highlighter-rouge">'**'</code>을 사용한다.</p>
+
+<p>⚠️ 함수의 매개변수 이름 == 딕셔너리의 Key 이름</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">personal_info</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'홍길동'</span><span class="p">,</span> <span class="s">'age'</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s">'address'</span><span class="p">:</span> <span class="s">'서울시 용산구 이촌동'</span><span class="p">})</span>
+<span class="n">이름</span><span class="p">:</span>  <span class="n">홍길동</span>
+<span class="n">나이</span><span class="p">:</span>  <span class="mi">30</span>
+<span class="n">주소</span><span class="p">:</span>  <span class="n">서울시</span> <span class="n">용산구</span> <span class="n">이촌동</span>
+</code></pre></div></div>
+
+<p>Keyword argument와 가변인수 사용</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">personal_info</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="p">...</span>     <span class="k">for</span> <span class="n">kw</span><span class="p">,</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">.</span><span class="n">items</span><span class="p">():</span> <span class="c1">#.items()로 딕셔너리의 key: value 쌍을 호출한다.
+</span><span class="p">...</span>         <span class="k">print</span><span class="p">(</span><span class="n">kw</span><span class="p">,</span> <span class="s">':'</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+
+<span class="c1"># 값을 한 개 넣어도 되고 여러개 넣어도 된다.
+</span></code></pre></div></div>
+
+<p>보통 <code class="language-plaintext highlighter-rouge">**kwargs의 사용</code>은 함수 안에 특정 키가 있는지 확인하도록 하고 기능을 넣을 때 사용한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">personal_info</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s">'name'</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>    <span class="c1"># in으로 딕셔너리 안에 특정 키가 있는지 확인
+</span>        <span class="k">print</span><span class="p">(</span><span class="s">'이름: '</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">'name'</span><span class="p">])</span>
+    <span class="k">if</span> <span class="s">'age'</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'나이: '</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">'age'</span><span class="p">])</span>
+    <span class="k">if</span> <span class="s">'address'</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'주소: '</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">'address'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>역시 마찬가지로, 고정인수와 가변인수를 동시에 사용할 수 있다.</p>
+
+<p>항상 고정인수가 가변인수를 앞선다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">personal_info</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="p">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="p">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="p">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">personal_info</span><span class="p">(</span><span class="s">'홍길동'</span><span class="p">)</span>
+<span class="n">홍길동</span>
+<span class="p">{}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">personal_info</span><span class="p">(</span><span class="s">'홍길동'</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s">'서울시 용산구 이촌동'</span><span class="p">)</span>
+<span class="n">홍길동</span>
+<span class="p">{</span><span class="s">'age'</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s">'address'</span><span class="p">:</span> <span class="s">'서울시 용산구 이촌동'</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">personal_info</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'홍길동'</span><span class="p">,</span> <span class="s">'age'</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s">'address'</span><span class="p">:</span> <span class="s">'서울시 용산구 이촌동'</span><span class="p">})</span>
+<span class="n">홍길동</span>
+<span class="p">{</span><span class="s">'age'</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s">'address'</span><span class="p">:</span> <span class="s">'서울시 용산구 이촌동'</span><span class="p">}</span>
+
+<span class="c1"># 위치인수와 키워드인수를 동시에 사용할 수 있다.
+</span><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">custom_print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="p">...</span>     <span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="p">...</span>
+</code></pre></div></div>
+
+<p>매개변수에 초깃값 지정하기</p>
+
+<p>주로 사용하는 값이 있고 가끔만 변경이 필요할 때</p>
+
+<p><code class="language-plaintext highlighter-rouge">def func_name(para=”val”)</code></p>
+
+<p>초깃값을 지정한 매개변수 자리는 비워두고 함수를 호출할 수 있다.
+⚠️ 초깃값을 지정한 매개변수는 항상 마지막에 온다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">personal_info</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s">"비공개"</span><span class="p">):</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">korean</span><span class="p">,</span> <span class="n">english</span><span class="p">,</span> <span class="n">mathematics</span><span class="p">,</span> <span class="n">science</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">91</span>
+
+<span class="k">def</span> <span class="nf">max_score</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+		<span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+<span class="n">max_score</span> <span class="o">=</span> <span class="n">get_max_score</span><span class="p">(</span><span class="n">korean</span><span class="p">,</span> <span class="n">english</span><span class="p">,</span> <span class="n">mathematics</span><span class="p">,</span> <span class="n">science</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'높은 점수:'</span><span class="p">,</span> <span class="n">max_score</span><span class="p">)</span>
+ 
+<span class="n">max_score</span> <span class="o">=</span> <span class="n">get_max_score</span><span class="p">(</span><span class="n">english</span><span class="p">,</span> <span class="n">science</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'높은 점수:'</span><span class="p">,</span> <span class="n">max_score</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">korean</span><span class="p">,</span> <span class="n">english</span><span class="p">,</span> <span class="n">mathematics</span><span class="p">,</span> <span class="n">science</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">())</span>
+
+<span class="c1"># 주어지는 인수는 여러개, 사용시마다 입력하는 인수 개수는 다 다르다.
+# 가변 인수를 사용한다.
+# 작성해야 하는 필요한 함수의 이름은 get_min_max, get_average이다.
+# get_min_max는 args를 사용하며 한번에 ','로 구분된 두 개의 값을 반환해야 한다.
+# get_average는 kwargs를 사용하며 kwargs의 인수 개수에 따라 평균을 구해야 한다.
+# min_score, max_score, average_score는 아래에서 함수 값을 이용해 지정해주고 있으므로
+# 함수가 직접 값을 반환해줘야 한다, return.
+</span>
+<span class="o">---</span>
+<span class="c1"># 정답 작성 창
+</span>
+<span class="k">def</span> <span class="nf">get_min_max</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+				<span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">args</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_average</span><span class="p">(</span><span class="o">*</span><span class="n">kwargs</span><span class="p">):</span>
+				<span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">kwargs</span><span class="p">.</span><span class="n">values</span><span class="p">())</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="o">---</span>
+
+<span class="n">min_score</span><span class="p">,</span> <span class="n">max_score</span> <span class="o">=</span> <span class="n">get_min_max_score</span><span class="p">(</span><span class="n">korean</span><span class="p">,</span> <span class="n">english</span><span class="p">,</span> <span class="n">mathematics</span><span class="p">,</span> <span class="n">science</span><span class="p">)</span>
+
+<span class="n">average_score</span> <span class="o">=</span> <span class="n">get_average</span><span class="p">(</span><span class="n">korean</span><span class="o">=</span><span class="n">korean</span><span class="p">,</span> <span class="n">english</span><span class="o">=</span><span class="n">english</span><span class="p">,</span>
+                            <span class="n">mathematics</span><span class="o">=</span><span class="n">mathematics</span><span class="p">,</span> <span class="n">science</span><span class="o">=</span><span class="n">science</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'낮은 점수: {0:.2f}, 높은 점수: {1:.2f}, 평균 점수: {2:.2f}'</span>
+      <span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">min_score</span><span class="p">,</span> <span class="n">max_score</span><span class="p">,</span> <span class="n">average_score</span><span class="p">))</span>
+ 
+<span class="n">min_score</span><span class="p">,</span> <span class="n">max_score</span> <span class="o">=</span> <span class="n">get_min_max_score</span><span class="p">(</span><span class="n">english</span><span class="p">,</span> <span class="n">science</span><span class="p">)</span>
+
+<span class="n">average_score</span> <span class="o">=</span> <span class="n">get_average</span><span class="p">(</span><span class="n">english</span><span class="o">=</span><span class="n">english</span><span class="p">,</span> <span class="n">science</span><span class="o">=</span><span class="n">science</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'낮은 점수: {0:.2f}, 높은 점수: {1:.2f}, 평균 점수: {2:.2f}'</span>
+      <span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">min_score</span><span class="p">,</span> <span class="n">max_score</span><span class="p">,</span> <span class="n">average_score</span><span class="p">))</span>
+</code></pre></div></div>
+:ET
